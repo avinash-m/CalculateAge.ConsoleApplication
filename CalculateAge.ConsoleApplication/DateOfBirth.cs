@@ -49,7 +49,28 @@ namespace CalculateAge.ConsoleApplication
 
         public void ShowAge()
         {
+            int currentDay = DateTime.Now.Day;
+            int currentMonth = DateTime.Now.Month;
+            int currentYear = DateTime.Now.Year;
+            int days = 0,months = 0, years = 0;
+            int[] daysInMonths = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
+            if (DateTime.IsLeapYear(currentYear))
+            { daysInMonths[1] = 29; }
+
+            if(this.Day > currentDay)
+            {
+                months = currentMonth - 1;
+                days = (daysInMonths[this.Month - 1] - this.Day) + currentDay;
+            }
+
+            if (this.Month > months)
+            {
+                years = currentYear - 1;
+                months = currentMonth;
+            }
+
+            Console.WriteLine($"\nYears: {years}, Months: {months}, Days: {days}");
         }
     }
 }
