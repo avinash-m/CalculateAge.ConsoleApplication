@@ -55,20 +55,24 @@ namespace CalculateAge.ConsoleApplication
             int days = 0,months = 0, years = 0;
             int[] daysInMonths = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-            if (DateTime.IsLeapYear(currentYear))
-            { daysInMonths[1] = 29; }
+            //if (DateTime.IsLeapYear(currentYear))
+            //{ daysInMonths[1] = 29; }
 
             if(this.Day > currentDay)
             {
-                months = currentMonth - 1;
-                days = (daysInMonths[this.Month - 1] - this.Day) + currentDay;
+                currentMonth = currentMonth - 1;
+                currentDay = daysInMonths[this.Month - 1] + currentDay + 1;
             }
 
-            if (this.Month > months)
+            if (this.Month > currentMonth)
             {
-                years = currentYear - 1;
-                months = currentMonth;
+                currentYear = currentYear - 1;
+                currentMonth = currentMonth + 12;
             }
+
+            days = currentDay - this.Day;
+            months = currentMonth - this.Month;
+            years = currentYear - this.Year;
 
             Console.WriteLine($"\nYears: {years}, Months: {months}, Days: {days}");
         }
