@@ -57,32 +57,42 @@ namespace CalculateAge.ConsoleApplication
 
         public void ShowAge()
         {
-            int currentDay = DateTime.Now.Day;
-            int currentMonth = DateTime.Now.Month;
-            int currentYear = DateTime.Now.Year;
-            int days = 0,months = 0, years = 0;
-            int[] daysInMonths = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-            //if (DateTime.IsLeapYear(currentYear))
-            //{ daysInMonths[1] = 29; }
-
-            if(this.Day > currentDay)
+            if (DateTime.Parse($"{this.Day}/{this.Month}/{this.Year}") <= DateTime.Now.Date)
             {
-                currentMonth = currentMonth - 1;
-                currentDay = daysInMonths[this.Month - 1] + currentDay + 1;
-            }
 
-            if (this.Month > currentMonth)
+
+                int currentDay = DateTime.Now.Day;
+                int currentMonth = DateTime.Now.Month;
+                int currentYear = DateTime.Now.Year;
+                int days = 0, months = 0, years = 0;
+                int[] daysInMonths = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+                //if (DateTime.IsLeapYear(currentYear))
+                //{ daysInMonths[1] = 29; }
+
+                if (this.Day > currentDay)
+                {
+                    currentMonth = currentMonth - 1;
+                    currentDay = daysInMonths[this.Month - 1] + currentDay + 1;
+                }
+
+                if (this.Month > currentMonth)
+                {
+                    currentYear = currentYear - 1;
+                    currentMonth = currentMonth + 12;
+                }
+
+                days = currentDay - this.Day;
+                months = currentMonth - this.Month;
+                years = currentYear - this.Year;
+
+                Console.WriteLine($"\nYears: {years}, Months: {months}, Days: {days}");
+            }
+            else
             {
-                currentYear = currentYear - 1;
-                currentMonth = currentMonth + 12;
+                Console.WriteLine("The given date is a future date");
             }
-
-            days = currentDay - this.Day;
-            months = currentMonth - this.Month;
-            years = currentYear - this.Year;
-
-            Console.WriteLine($"\nYears: {years}, Months: {months}, Days: {days}");
         }
+        
     }
 }
