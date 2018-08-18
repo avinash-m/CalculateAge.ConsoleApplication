@@ -67,8 +67,8 @@ namespace CalculateAge.ConsoleApplication
                 int days = 0, months = 0, years = 0;
                 int[] daysInMonths = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-                //if (DateTime.IsLeapYear(currentYear))
-                //{ daysInMonths[1] = 29; }
+                if (DateTime.IsLeapYear(currentYear))
+                { daysInMonths[1] = 29; }
 
                 if (this.Day > currentDay)
                 {
