@@ -23,7 +23,15 @@ namespace CalculateAge.ConsoleApplication
         public int Year
         {
             get { return year; }
-            set { year = value; }
+            set
+            {
+                if (value >= 1900 && value <= DateTime.Now.Year)
+                {
+                    year = value;
+                }
+                else
+                    year = 1900;
+            }
         }
 
         public DateOfBirth()
